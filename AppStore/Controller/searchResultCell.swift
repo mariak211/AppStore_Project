@@ -12,7 +12,7 @@ class searchResultCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.backgroundColor = .red
+        imgView.backgroundColor = .purple
         imgView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         imgView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         imgView.layer.cornerRadius = 12;
@@ -44,21 +44,23 @@ class searchResultCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         button.backgroundColor = UIColor.darkGray
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         button.layer.borderColor = UIColor.black.cgColor
-        button.layer.cornerRadius = button.layer.frame.width/2
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         return button
     }()
     
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .purple
+        backgroundColor = .lightGray
         
         let labelStackView  = UIStackView(arrangedSubviews: [
             nameLabel, categoryLabel, ratingLabel
             ])
-        labelStackView.axis = .vertical
+            labelStackView.axis = .vertical
         let stackView = UIStackView(arrangedSubviews: [
             imageView, labelStackView, getButton
             ])
