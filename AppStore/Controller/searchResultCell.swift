@@ -12,7 +12,7 @@ class searchResultCell: UICollectionViewCell {
     
     let appIconImagView: UIImageView = {
         let imgView = UIImageView()
-        imgView.backgroundColor = .purple
+        imgView.backgroundColor = .red
         imgView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         imgView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         imgView.leadingAnchor.constraint(equalTo: )
@@ -53,22 +53,57 @@ class searchResultCell: UICollectionViewCell {
         return button
     }()
     
+    let screenshotImg1: UIImageView = {
+        let imge1 = UIImageView()
+        imge1.backgroundColor = .blue
+        return imge1
+    }()
 
+    let screenshotImg2: UIImageView = {
+    let imge2 = UIImageView()
+    imge2.backgroundColor = .blue
+    return imge2
+    }()
+    
+    let screenshotImg3: UIImageView = {
+    let imge3 = UIImageView()
+    imge3.backgroundColor = .blue
+    return imge3
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = .clear
         
-        let labelStackView  = UIStackView(arrangedSubviews: [
+        let applabelStackView  = UIStackView(arrangedSubviews: [
             nameLabel, categoryLabel, ratingLabel
             ])
-            labelStackView.axis = .vertical
-        let stackView = UIStackView(arrangedSubviews: [
-            appIconImagView, labelStackView, getButton
+            applabelStackView.axis = .vertical
+        
+        let screenshotStackView = UIStackView(arrangedSubviews: [
+            screenshotImg1,screenshotImg2,screenshotImg3
             ])
-        stackView.spacing = 10
-        stackView.alignment = .center
-        addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+        screenshotStackView.spacing = 12
+        screenshotStackView.distribution = .fillEqually
+        
+
+        
+        let appInfoStackView = UIStackView(arrangedSubviews: [
+            appIconImagView, applabelStackView, getButton
+            ])
+        appInfoStackView.spacing = 12
+        appInfoStackView.alignment = .center
+        
+        
+        let rootStackView = UIStackView(arrangedSubviews: [
+            appInfoStackView, screenshotStackView
+    ])
+        rootStackView.spacing = 12
+        rootStackView.axis = .vertical
+        
+        addSubview(rootStackView)
+        rootStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
     }
     
     required init?(coder aDecoder: NSCoder) {
