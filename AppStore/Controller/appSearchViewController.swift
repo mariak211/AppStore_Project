@@ -11,6 +11,7 @@ import UIKit
 class appSearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
 
     fileprivate let cellId  = "alkaida211"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -29,6 +30,8 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        cell.layer.borderColor = UIColor.black.cgColor
+        //cell.layer.borderWidth = 1
           return cell
     }
     init(){
