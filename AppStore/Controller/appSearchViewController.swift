@@ -17,44 +17,21 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         collectionView.backgroundColor = .white
         collectionView.register(searchResultCell.self, forCellWithReuseIdentifier: cellId)
     
-        
         fetchItuneApps()
     }
     
-    
-    
-    
     fileprivate func fetchItuneApps(){
-        let urlString = "https://itunes.apple.com/search?term=Instagram&entity=software"
-        guard  let url = URL(string: urlString) else {return}
-        URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            if let err = err{
-                print("fail to fetch apps: ", err)
-                return
+
+        NetworkService.shared.fetchApps { (results) in
+            self.appSearchResult = results
+            DispatchQueue.main.async {
+             self.collectionView.reloadData()
             }
-            guard let data = data else {return }
-    
-            do{
-                let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data)
-                
-                self.appSearchResult = searchResult!.results
-                
-                DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                }
-            }catch let jsonErr{
-                print("fail to decode json :", jsonErr)
-                
-            }
-        }.resume()//fires off the request
+        }
         
     }
     
-    
-    
-    
-    
-    
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return.init(width: view.frame.width, height: 350)
