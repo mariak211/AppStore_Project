@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		588C58CB228FC2DF00D0F305 /* utilityFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58CA228FC2DF00D0F305 /* utilityFile.swift */; };
 		588C58CF2290854000D0F305 /* appSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58CE2290854000D0F305 /* appSearchResult.swift */; };
+		588C58D12290F6D100D0F305 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58D02290F6D100D0F305 /* NetworkService.swift */; };
 		58E2524C228E264D00E1B43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E2524B228E264D00E1B43C /* AppDelegate.swift */; };
 		58E2524E228E264D00E1B43C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E2524D228E264D00E1B43C /* ViewController.swift */; };
 		58E25251228E264D00E1B43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58E2524F228E264D00E1B43C /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		588C58CA228FC2DF00D0F305 /* utilityFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilityFile.swift; sourceTree = "<group>"; };
 		588C58CE2290854000D0F305 /* appSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appSearchResult.swift; sourceTree = "<group>"; };
+		588C58D02290F6D100D0F305 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		58E25248228E264D00E1B43C /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E2524B228E264D00E1B43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58E2524D228E264D00E1B43C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		588C58CD229059AD00D0F305 /* Network Service */ = {
 			isa = PBXGroup;
 			children = (
+				588C58D02290F6D100D0F305 /* NetworkService.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				58E2525E228E278000E1B43C /* TabBarController.swift in Sources */,
 				58E2524E228E264D00E1B43C /* ViewController.swift in Sources */,
+				588C58D12290F6D100D0F305 /* NetworkService.swift in Sources */,
 				588C58CF2290854000D0F305 /* appSearchResult.swift in Sources */,
 				58E25263228E58EE00E1B43C /* appSearchViewController.swift in Sources */,
 				58E25265228EFE9500E1B43C /* searchResultCell.swift in Sources */,
