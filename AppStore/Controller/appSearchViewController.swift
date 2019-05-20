@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class appSearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
 
@@ -16,22 +17,22 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         collectionView.register(searchResultCell.self, forCellWithReuseIdentifier: cellId)
-    
         fetchItuneApps()
     }
     
-    fileprivate func fetchItuneApps(){
-
-        NetworkService.shared.fetchApps { (results) in
+    fileprivate func fetchItuneApps()
+    {
+        NetworkService.shared.fetchApps {(results) in
             self.appSearchResult = results
             DispatchQueue.main.async {
+
              self.collectionView.reloadData()
+
+
             }
         }
-        
-    }
-    
 
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return.init(width: view.frame.width, height: 350)
@@ -49,6 +50,11 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         cell.nameLabel.text = appSearchReslt.trackName
         cell.categoryLabel.text = appSearchReslt.primaryGenreName
         cell.ratingLabel.text = "Rating: \(appSearchReslt.averageUserRating ?? 0) M"
+        let url = URL(string: appSearchReslt.artworkUrl100)
+        cell.appIconImagView.sd_setImage(with: url)
+        cell.screenshotImg1.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[0]))
+        cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
+        cell.screenshotImg3.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[2]))
           return cell
     }
     init(){

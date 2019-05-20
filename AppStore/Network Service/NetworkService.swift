@@ -19,14 +19,15 @@ class NetworkService{
                 return
             }
             guard let data = data else {return}
-            
             do{
+                print(data)
                 let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data)
+            
                 guard let searchReslt = searchResult else{return}
                 completion(searchReslt.results)
             }catch let jsonErr{
                 print("fail to decode json :", jsonErr)
-                
+
             }
             }.resume()//fires off the request
         
