@@ -9,29 +9,60 @@
 import UIKit
 import SDWebImage
 
-class appSearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
+class appSearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating{
+    
+    
 
     fileprivate let cellId  = "alkaida211"
     fileprivate var appSearchResult = [Result]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8275631421)
         collectionView.register(searchResultCell.self, forCellWithReuseIdentifier: cellId)
         fetchItuneApps()
+        setUpSearchController()
     }
     
     fileprivate func fetchItuneApps()
     {
-        NetworkService.shared.fetchApps {(results) in
+        
+        
+        //TODO- need to figure out to implement in this function
+//        NetworkService.shared.fetchApps(searchTerm: "twitter") {(results) in
+//            self.appSearchResult = results
+//            DispatchQueue.main.async {
+//
+//             self.collectionView.reloadData()
+//
+//
+//            }
+//        }
+
+    }
+    
+    fileprivate func  setUpSearchController()
+    {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "App Store"
+        definesPresentationContext = true
+    }
+    
+    
+    //TODO--implement search bar
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {return}
+        NetworkService.shared.fetchApps(searchTerm: searchText) { (results) in
             self.appSearchResult = results
             DispatchQueue.main.async {
-
-             self.collectionView.reloadData()
-
-
+                 self.collectionView.reloadData()
             }
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -53,8 +84,16 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         let url = URL(string: appSearchReslt.artworkUrl100)
         cell.appIconImagView.sd_setImage(with: url)
         cell.screenshotImg1.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[0]))
-        cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
-        cell.screenshotImg3.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[2]))
+        if appSearchReslt.screenshotUrls.count > 1{
+            cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
+            
+        }
+        
+        if appSearchReslt.screenshotUrls.count > 2
+        {
+            cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
+            cell.screenshotImg3.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[2]))
+        }
           return cell
     }
     init(){

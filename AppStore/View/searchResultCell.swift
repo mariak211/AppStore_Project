@@ -41,33 +41,41 @@ class searchResultCell: UICollectionViewCell {
     let getButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GET", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
-        button.backgroundColor = UIColor.lightGray
-        button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        button.layer.borderColor = UIColor.black.cgColor
-        //button.layer.borderWidth = 1
-        button.layer.cornerRadius = 16
+        button.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 0.7409835189)
+        button.widthAnchor.constraint(equalToConstant: 68).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        button.layer.borderColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 0.1361033818)
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 15
         button.clipsToBounds = true
         return button
     }()
     
     let screenshotImg1: UIImageView = {
         let imge1 = UIImageView()
-        imge1.backgroundColor = .blue
+        imge1.contentMode = .scaleToFill
+       imge1.layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 0.5290025685)
+        imge1.layer.borderWidth = 0.5
         return imge1
     }()
 
     let screenshotImg2: UIImageView = {
     let imge2 = UIImageView()
-    imge2.backgroundColor = .blue
+    imge2.layer.borderColor = #colorLiteral(red: 0.4756349325, green: 0.4756467342, blue: 0.4756404161, alpha: 0.5288420377)
+    imge2.layer.borderWidth = 0.5
+    imge2.contentMode = .scaleToFill
+
     return imge2
     }()
     
     let screenshotImg3: UIImageView = {
     let imge3 = UIImageView()
-    imge3.backgroundColor = .blue
+    imge3.contentMode = .scaleToFill
+    imge3.layer.borderWidth = 0.5
+    imge3.layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 0.5252300942)
+        
     return imge3
     }()
     
