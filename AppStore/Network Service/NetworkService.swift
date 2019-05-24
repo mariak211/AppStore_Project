@@ -8,10 +8,9 @@
 import Foundation
 class NetworkService{
     static let shared = NetworkService()
-    
-    func fetchApps(completion: @escaping ([Result])->())
+    func fetchApps(searchTerm: String, completion: @escaping ([Result])->())
     {
-        let urlString = "https://itunes.apple.com/search?term=Instagram&entity=software"
+        let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
         guard  let url = URL(string: urlString) else {return}
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let err = err{
@@ -20,10 +19,10 @@ class NetworkService{
             }
             guard let data = data else {return}
             do{
-                print(data)
                 let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data)
             
                 guard let searchReslt = searchResult else{return}
+                
                 completion(searchReslt.results)
             }catch let jsonErr{
                 print("fail to decode json :", jsonErr)
