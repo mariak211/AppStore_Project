@@ -9,10 +9,9 @@
 import UIKit
 import SDWebImage
 
-class appSearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating{
+class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating{
     
-    
-
+    var timer: Timer?
     fileprivate let cellId  = "alkaida211"
     fileprivate var appSearchResult = [Result]()
     
@@ -23,27 +22,21 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8275631421)
         collectionView.register(searchResultCell.self, forCellWithReuseIdentifier: cellId)
         fetchItuneApps()
-        setUpSearchController()
+        setUpSearchBarController()
     }
     
     fileprivate func fetchItuneApps()
     {
-        
-        
         //TODO- need to figure out to implement in this function
-//        NetworkService.shared.fetchApps(searchTerm: "twitter") {(results) in
-//            self.appSearchResult = results
-//            DispatchQueue.main.async {
-//
-//             self.collectionView.reloadData()
-//
-//
-//            }
-//        }
-
+        NetworkService.shared.fetchApps(searchTerm: "instagram") {(results) in
+            self.appSearchResult = results
+            DispatchQueue.main.async {
+             self.collectionView.reloadData()
+            }
+        }
     }
     
-    fileprivate func  setUpSearchController()
+    fileprivate func  setUpSearchBarController()
     {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -56,15 +49,21 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
     
     //TODO--implement search bar
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else {return}
-        NetworkService.shared.fetchApps(searchTerm: searchText) { (results) in
-            self.appSearchResult = results
-            DispatchQueue.main.async {
-                 self.collectionView.reloadData()
+        //implement throtling to search bar
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            guard let searchText = searchController.searchBar.text else {return}
+            NetworkService.shared.fetchApps(searchTerm: searchText) { (results) in
+                self.appSearchResult = results
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
-        }
+        })
+       
     }
     
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return.init(width: view.frame.width, height: 350)
     }
@@ -86,22 +85,13 @@ class appSearchViewController: UICollectionViewController, UICollectionViewDeleg
         cell.screenshotImg1.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[0]))
         if appSearchReslt.screenshotUrls.count > 1{
             cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
-            
         }
-        
         if appSearchReslt.screenshotUrls.count > 2
         {
             cell.screenshotImg2.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[1]))
             cell.screenshotImg3.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[2]))
         }
           return cell
-    }
-    init(){
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
