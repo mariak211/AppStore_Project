@@ -15,8 +15,9 @@ class searchResultCell: UICollectionViewCell {
         imgView.backgroundColor = .red
         imgView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         imgView.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        imgView.leadingAnchor.constraint(equalTo: )
-        imgView.layer.cornerRadius = 12;
+        imgView.layer.cornerRadius = 64/4
+        imgView.contentMode = .scaleToFill
+        imgView.clipsToBounds = true
         return imgView
     }()
     
@@ -41,7 +42,7 @@ class searchResultCell: UICollectionViewCell {
     let getButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GET", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         button.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 0.7409835189)
         button.widthAnchor.constraint(equalToConstant: 68).isActive = true
