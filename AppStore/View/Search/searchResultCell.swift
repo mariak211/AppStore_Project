@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class searchResultCell: UICollectionViewCell {
     
     let appIconImagView: UIImageView = {

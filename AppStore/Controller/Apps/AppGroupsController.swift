@@ -12,11 +12,9 @@ class AppGroupsController: BaseController, UICollectionViewDelegateFlowLayout {
     fileprivate let appId = "appid123"
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         collectionView.register(AppGroupsCell.self, forCellWithReuseIdentifier: appId)
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return.init(width:view.frame.width, height: 300)
@@ -30,5 +28,8 @@ class AppGroupsController: BaseController, UICollectionViewDelegateFlowLayout {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appId, for: indexPath)
 
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return.init(top: 16, left: 0, bottom: 0, right: 0)
     }
 }

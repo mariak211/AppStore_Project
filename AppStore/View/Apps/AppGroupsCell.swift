@@ -7,15 +7,7 @@
 //
 
 import UIKit
-extension UILabel{
-    convenience init(text: String, font:UIFont)
-    {
-        self.init(frame: .zero)
-        self.text = text
-        self.font = font
-    }
-    
-}
+
 class AppGroupsCell: UICollectionViewCell
 {
     let titleLabel = UILabel(text: "Apps Section", font: .boldSystemFont(ofSize: 32))
@@ -23,11 +15,10 @@ class AppGroupsCell: UICollectionViewCell
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .lightGray
+        //backgroundColor = .lightGray
         addSubview(titleLabel)
         addSubview(HorizontontallAppController.view)
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
-        //HorizontontallAppController.view.backgroundColor = .blue
         HorizontontallAppController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
     }
