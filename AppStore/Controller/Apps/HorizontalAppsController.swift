@@ -10,7 +10,6 @@ import UIKit
 class HorizontalCollectionViewCOntroller: BaseController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "Cellid"
-
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -20,7 +19,6 @@ class HorizontalCollectionViewCOntroller: BaseController, UICollectionViewDelega
             layout.scrollDirection = .horizontal
         }
     }
-    
     let lineSpacing : CGFloat = 10
     let topBottomPadding : CGFloat = 12
     let rightLeftPadding : CGFloat = 12

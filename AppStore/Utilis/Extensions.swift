@@ -24,8 +24,6 @@ extension UIImageView{
         self.clipsToBounds = true
     }
 }
-
-
 extension UIButton{
     convenience init(title: String){
         self.init(type: .system)

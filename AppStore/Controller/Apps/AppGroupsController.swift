@@ -12,7 +12,7 @@ class AppGroupsController: BaseController, UICollectionViewDelegateFlowLayout {
     fileprivate let appId = "appid123"
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(white: 0.99, alpha: 1)
         collectionView.register(AppGroupsCell.self, forCellWithReuseIdentifier: appId)
     }
     
