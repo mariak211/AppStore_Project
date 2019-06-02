@@ -10,9 +10,13 @@ import UIKit
 
 
 class AppsGroupHorizontalCell: UICollectionViewCell {
+    
+    
+   
+    
     let getButton = UIButton(title: "GET")
-    let nameLabl = UILabel(text: "App Name", font: .boldSystemFont(ofSize: 20))
-    let companyTitle = UILabel(text: "Facbook", font: .boldSystemFont(ofSize: 16))
+    let nameLabl = UILabel(text: "", font: .boldSystemFont(ofSize: 20))
+    let companyTitle = UILabel(text: "", font: .systemFont(ofSize: 18))
     let AppImageView = UIImageView(cornerRadius: 8)
     
     override init(frame: CGRect) {
@@ -26,7 +30,7 @@ class AppsGroupHorizontalCell: UICollectionViewCell {
         getButton.constrainWidth(constant: 64)
         getButton.layer.cornerRadius = 16
         getButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        
+       
         let verticalStackView = UIStackView(arrangedSubviews: [
             nameLabl, companyTitle
             ])
