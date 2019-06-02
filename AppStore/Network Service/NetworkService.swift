@@ -29,7 +29,23 @@ class NetworkService{
 
             }
             }.resume()//fires off the request
-        
-
+    }
+    
+    func FetchTopTVShows(completion: @escaping (appsGroup?, Error?)->())
+    {
+        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/ca/tv-shows/top-tv-episodes/all/200/explicit.json")else{return}
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            if let error = err{
+                completion(nil, err)
+                print("failed to fetch data", error)
+            }
+            guard let data = data else{return}
+            do{
+                let appsgroup = try? JSONDecoder().decode(appsGroup.self, from: data)
+                completion(appsgroup, nil)
+            }catch{
+                completion(nil, error)
+            }
+        }.resume()
     }
 }

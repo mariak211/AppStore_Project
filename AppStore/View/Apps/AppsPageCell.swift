@@ -8,25 +8,19 @@
 
 import UIKit
 
-class AppGroupsCell: UICollectionViewCell
+class AppsPageCell: UICollectionViewCell
 {
     let titleLabel = UILabel(text: "Apps Section", font: .boldSystemFont(ofSize: 32))
-    let HorizontontallAppController = HorizontalCollectionViewCOntroller()
+    let HorizontontallAppController = HorizontalCollectionViewController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //backgroundColor = .lightGray
         addSubview(titleLabel)
         addSubview(HorizontontallAppController.view)
-        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 0))
         HorizontontallAppController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-        
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
-    
 }
