@@ -9,6 +9,9 @@
 import UIKit
 class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
     
+    var group = [appsGroup]()
+    let activitorIndicator = UIActivityIndicatorView(style: .gray)
+    var topGrossing, newApps, topFreeApss, topPaid, newGame : appsGroup?
     fileprivate let appId = "appid123"
     fileprivate let headerId = "headerId"
     override func viewDidLoad() {
@@ -16,25 +19,70 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.backgroundColor = UIColor(white: 0.99, alpha: 1)
         collectionView.register(AppsPageCell.self, forCellWithReuseIdentifier: appId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId )
-        
-        fetchTvShows()
+        activitorIndicator.hidesWhenStopped = true
+        fetchApps()
     }
     
-    var  twshows: appsGroup?
-     func fetchTvShows()
+     fileprivate func fetchApps()
     {
+
         
-        NetworkService.shared.FetchTopTVShows { (tvShows, err) in
-            
-            self.twshows = tvShows
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        let dispatchGroup = DispatchGroup()
+        activitorIndicator.startAnimating()
+       dispatchGroup.enter()
+        NetworkService.shared.FetchTopGrossingApps { (apps, err) in
+            dispatchGroup.leave()
+            self.topGrossing  = apps
+        }
+        
+        dispatchGroup.enter()
+        NetworkService.shared.fetchNewApps { (apps, err) in
+            dispatchGroup.leave()
+            self.newApps = apps
+        }
+        dispatchGroup.enter()
+        NetworkService.shared.topFreeApps { (apps, Error) in
+            dispatchGroup.leave()
+             self.topFreeApss = apps
+        }
+        dispatchGroup.enter()
+        NetworkService.shared.fetChNewGames { (apps, err) in
+            dispatchGroup.leave()
+            self.newGame = apps
+        }
+        dispatchGroup.enter()
+        NetworkService.shared.fetchtopPaidApp { (apps, err) in
+        dispatchGroup.leave()
+                self.topPaid = apps
             }
-            
+        dispatchGroup.notify(queue: .main){
+            self.activitorIndicator.stopAnimating()
+            if let app = self.newApps
+            {
+                self.group.append(app)
+            }
+            if let app = self.topGrossing
+            {
+                self.group.append(app)
+            }
+            if let app = self.topFreeApss
+            {
+                self.group.append(app)
+            }
+            if let app = self.topPaid
+            {
+                self.group.append(app)
+            }
+            if let app = self.newGame
+            {
+                self.group.append(app)
+            }
+            self.collectionView.reloadData()
+
         }
     }
     
-    
+
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
      let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId , for: indexPath)
         return header
@@ -49,14 +97,14 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return group.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appId, for: indexPath) as! AppsPageCell
-        cell.titleLabel.text = twshows?.feed.title
-         //var tVshows: appsGroup?
-        cell.HorizontontallAppController.tVshows = twshows
+        let AppGroup = group[indexPath.item]
+        cell.titleLabel.text = AppGroup.feed.title
+        cell.HorizontontallAppController.Group = AppGroup
         cell.HorizontontallAppController.collectionView.reloadData()
         return cell
     }

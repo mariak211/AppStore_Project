@@ -31,9 +31,35 @@ class NetworkService{
             }.resume()//fires off the request
     }
     
-    func FetchTopTVShows(completion: @escaping (appsGroup?, Error?)->())
+    func FetchTopGrossingApps(completion: @escaping (appsGroup?, Error?)->())
     {
-        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/ca/tv-shows/top-tv-episodes/all/200/explicit.json")else{return}
+        let UrlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/100/explicit.json"
+        ApiFetchJsonData(urlString: UrlString, completion: completion)
+    }
+    func fetchNewApps(completion: @escaping (appsGroup?, Error?)->()){
+        let urlString = "https://rss.itunes.apple.com/api/v1/ca/ios-apps/new-apps-we-love/all/25/explicit.json"
+        ApiFetchJsonData(urlString: urlString, completion: completion)
+    }
+    
+    func topFreeApps(completion: @escaping (appsGroup?, Error?)->()){
+        let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free-ipad/all/100/explicit.json"
+        ApiFetchJsonData(urlString: urlString, completion: completion)
+    }
+    
+    func fetChNewGames(completion: @escaping (appsGroup?, Error?)->()){
+        let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/100/explicit.json"
+        ApiFetchJsonData(urlString: urlString, completion: completion)
+    }
+    func fetchtopPaidApp(completion: @escaping (appsGroup?, Error?)->()){
+        let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-paid/all/100/explicit.json"
+        ApiFetchJsonData(urlString: urlString, completion: completion)
+    }
+    
+    //helper function
+
+    func ApiFetchJsonData(urlString: String, completion: @escaping (appsGroup?, Error?) ->()){
+        
+        guard let url = URL(string: urlString)else{return}
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let error = err{
                 completion(nil, err)
@@ -46,6 +72,6 @@ class NetworkService{
             }catch{
                 completion(nil, error)
             }
-        }.resume()
+            }.resume()
     }
 }
