@@ -28,8 +28,8 @@ class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayou
     fileprivate func fetchItuneApps()
     {
         //TODO- need to figure out to implement in this function
-        NetworkService.shared.fetchApps(searchTerm: "instagram") {(results) in
-            self.appSearchResult = results
+        NetworkService.shared.fetchApps(searchTerm: "instagram") {(res, err) in
+            self.appSearchResult = res?.results ?? []
             DispatchQueue.main.async {
              self.collectionView.reloadData()
             }
@@ -46,23 +46,22 @@ class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayou
         definesPresentationContext = true
     }
     
-    
-    //TODO--implement search bar
     func updateSearchResults(for searchController: UISearchController) {
         //implement throtling to search bar
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+    
             guard let searchText = searchController.searchBar.text else {return}
-            NetworkService.shared.fetchApps(searchTerm: searchText) { (results) in
-                self.appSearchResult = results
+            
+            NetworkService.shared.fetchApps(searchTerm: searchText) { (res, err)  in
+                
+                self.appSearchResult = res?.results ?? []
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             }
         })
-       
     }
-    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return.init(width: view.frame.width, height: 350)

@@ -12,7 +12,7 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
     var group = [appsGroup]()
     var socialApp = [Socialmedia]()
     let activitorIndicator = UIActivityIndicatorView(style: .gray)
-    var topGrossing, newApps, topFreeApss, topPaid, newGame : appsGroup?
+    var topGrossing, topFree, newApps, topFreeApss, topPaid, newGame : appsGroup?
     
     let activityIndicator : UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
@@ -44,7 +44,11 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
                 self.socialApp = socialapps
             }
         }
-        
+        dispatchGroup.enter()
+        NetworkService.shared.fetchTopFree { (apps, err) in
+            dispatchGroup.leave()
+            self.topFree = apps
+        }
        
         dispatchGroup.enter()
         NetworkService.shared.fetchNewApps { (apps, err) in
@@ -77,6 +81,9 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
             self.activityIndicator.stopAnimating()
             if let app = self.newApps
             {
+                self.group.append(app)
+            }
+            if let app = self.topFree{
                 self.group.append(app)
             }
             if let app = self.topGrossing
