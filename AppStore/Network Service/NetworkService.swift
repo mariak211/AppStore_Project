@@ -55,15 +55,30 @@ class NetworkService{
         ApiFetchJsonData(urlString: urlString, completion: completion)
     }
     
+    func fetchSocialMediaApps(completion: @escaping ([Socialmedia]?, Error?)->()){
+        
+        let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+    
+        guard let url = URL(string: urlString)else{return}
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            if let error = err{
+                completion(nil, err)
+            }
+            guard let Data = data else{return}
+            do{
+                let socialMedia = try? JSONDecoder().decode([Socialmedia].self, from: Data)
+                print(socialMedia)
+                completion(socialMedia, nil)
+            }catch{completion(nil, error)}
+            }.resume()
+    }
     //helper function
-
     func ApiFetchJsonData(urlString: String, completion: @escaping (appsGroup?, Error?) ->()){
         
         guard let url = URL(string: urlString)else{return}
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let error = err{
-                completion(nil, err)
-                print("failed to fetch data", error)
+                completion(nil, error)
             }
             guard let data = data else{return}
             do{

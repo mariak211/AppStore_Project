@@ -16,13 +16,11 @@ class TabBarController : UITabBarController{
         createNavController(viewController: AppPageController(), title: "Apps", imageName: #imageLiteral(resourceName: "apps")),
         createNavController(viewController: appSearchViewController(), title: "Search", imageName: #imageLiteral(resourceName: "search")),
         createNavController(viewController: UIViewController(), title: "Today", imageName: #imageLiteral(resourceName: "today_icon"))
-       
         ]
-        
     }
     
     fileprivate func createNavController(viewController : UIViewController, title: String, imageName: UIImage)->UIViewController{
-        viewController.view.backgroundColor = .white
+        viewController.view.backgroundColor = UIColor(white: 0.85, alpha: 0.8)
         viewController.navigationItem.title = title
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.image = imageName

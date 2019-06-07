@@ -8,7 +8,7 @@
 
 import UIKit
 class AppsHeaderController: BaseController, UICollectionViewDelegateFlowLayout {
-    
+    var socialApps = [Socialmedia]()
     let cellHeaderId = "HeaderIdCell"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +19,21 @@ class AppsHeaderController: BaseController, UICollectionViewDelegateFlowLayout {
         }
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - 48, height: view.frame.height)
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        
+      
+            return socialApps.count
+        
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellHeaderId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellHeaderId, for: indexPath) as! AppsHeaderCell
+        let social = socialApps[indexPath.item]
+        cell.companyNameLabel.text = social.name
+        cell.descriptionLabel.text = social.tagline
+        cell.ImageView.sd_setImage(with: URL(string: social.imageUrl))
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
