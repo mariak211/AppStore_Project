@@ -10,7 +10,7 @@ import UIKit
 
 class AppsPageCell: UICollectionViewCell
 {
-    let titleLabel = UILabel(text: "Apps Section", font: .boldSystemFont(ofSize: 32))
+    let titleLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 32))
     let HorizontontallAppController = HorizontalCollectionViewController()
     
     override init(frame: CGRect) {

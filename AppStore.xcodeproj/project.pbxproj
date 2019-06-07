@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58406FFA22A8068A007E5F8F /* HeaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58406FF922A8068A007E5F8F /* HeaderApp.swift */; };
 		584417FF22987EDD009C218B /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584417FE22987EDD009C218B /* BaseController.swift */; };
 		5859373D22A0A054006FF8D1 /* AppsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859373C22A0A054006FF8D1 /* AppsPageHeader.swift */; };
 		5859373F22A0A26D006FF8D1 /* AppsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859373E22A0A26D006FF8D1 /* AppsHeaderController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58406FF922A8068A007E5F8F /* HeaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderApp.swift; sourceTree = "<group>"; };
 		584417FE22987EDD009C218B /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		5859373C22A0A054006FF8D1 /* AppsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeader.swift; sourceTree = "<group>"; };
 		5859373E22A0A26D006FF8D1 /* AppsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				5859374422A17321006FF8D1 /* Appshorizontal.swift */,
+				58406FF922A8068A007E5F8F /* HeaderApp.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				5859374522A17321006FF8D1 /* Appshorizontal.swift in Sources */,
 				58E25265228EFE9500E1B43C /* searchResultCell.swift in Sources */,
 				58C4826B229ECF3E00707529 /* AppsGroupHorizontalCell.swift in Sources */,
+				58406FFA22A8068A007E5F8F /* HeaderApp.swift in Sources */,
 				588C58CB228FC2DF00D0F305 /* utilityFile.swift in Sources */,
 				58E2524C228E264D00E1B43C /* AppDelegate.swift in Sources */,
 			);
