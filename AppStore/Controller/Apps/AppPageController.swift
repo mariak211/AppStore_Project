@@ -12,7 +12,15 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
     var group = [appsGroup]()
     var socialApp = [Socialmedia]()
     let activitorIndicator = UIActivityIndicatorView(style: .gray)
-    var topGrossing, newApps, topFreeApss, topPaid, newGame : appsGroup?
+    var topGrossing, topFree, newApps, topFreeApss, topPaid, newGame : appsGroup?
+    
+    let activityIndicator : UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.color = .black
+        aiv.hidesWhenStopped = true
+        aiv.startAnimating()
+        return aiv
+    }()
     fileprivate let appId = "appid123"
     fileprivate let headerId = "headerId"
     override func viewDidLoad() {
@@ -20,7 +28,8 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.backgroundColor = UIColor(white: 0.99, alpha: 1)
         collectionView.register(AppsPageCell.self, forCellWithReuseIdentifier: appId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId )
-        activitorIndicator.hidesWhenStopped = true
+    view.addSubview(activityIndicator)
+        activityIndicator.fillSuperview()
         fetchApps()
     }
     
@@ -35,7 +44,11 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
                 self.socialApp = socialapps
             }
         }
-        
+        dispatchGroup.enter()
+        NetworkService.shared.fetchTopFree { (apps, err) in
+            dispatchGroup.leave()
+            self.topFree = apps
+        }
        
         dispatchGroup.enter()
         NetworkService.shared.fetchNewApps { (apps, err) in
@@ -65,8 +78,12 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
         }
         
         dispatchGroup.notify(queue: .main){
+            self.activityIndicator.stopAnimating()
             if let app = self.newApps
             {
+                self.group.append(app)
+            }
+            if let app = self.topFree{
                 self.group.append(app)
             }
             if let app = self.topGrossing

@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 class HorizontalCollectionViewController: BaseController, UICollectionViewDelegateFlowLayout {
     var Group:appsGroup?
-     var tVshows: appsGroup?
     let cellId = "Cellid"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,6 @@ class HorizontalCollectionViewController: BaseController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupHorizontalCell
-        let tvshows = tVshows?.feed.results[indexPath.item]
         let apps = Group?.feed.results[indexPath.item]
 
         cell.nameLabl.text = apps?.artistName
