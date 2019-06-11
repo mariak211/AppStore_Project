@@ -6,8 +6,8 @@
 //  Copyright © 2019 The Future I Dream. All rights reserved.
 //
 import Foundation
-class NetworkService{
-    static let shared = NetworkService()
+class ApiNetworkService{
+    static let shared = ApiNetworkService()
     func fetchApps(searchTerm: String, completion: @escaping (SearchResult?, Error?)->())
     {
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"

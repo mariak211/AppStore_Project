@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581E7CDE22ACFC8A00428746 /* AppDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581E7CDD22ACFC8A00428746 /* AppDetailsController.swift */; };
 		58406FFA22A8068A007E5F8F /* HeaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58406FF922A8068A007E5F8F /* HeaderApp.swift */; };
 		584417FF22987EDD009C218B /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584417FE22987EDD009C218B /* BaseController.swift */; };
 		5859373D22A0A054006FF8D1 /* AppsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859373C22A0A054006FF8D1 /* AppsPageHeader.swift */; };
 		5859373F22A0A26D006FF8D1 /* AppsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859373E22A0A26D006FF8D1 /* AppsHeaderController.swift */; };
 		5859374122A0A53F006FF8D1 /* AppsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859374022A0A53F006FF8D1 /* AppsHeaderCell.swift */; };
 		5859374522A17321006FF8D1 /* Appshorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859374422A17321006FF8D1 /* Appshorizontal.swift */; };
+		587956F222B01B310022103A /* AppDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587956F122B01B310022103A /* AppDetailCell.swift */; };
 		588C58CB228FC2DF00D0F305 /* utilityFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58CA228FC2DF00D0F305 /* utilityFile.swift */; };
 		588C58CF2290854000D0F305 /* appSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58CE2290854000D0F305 /* appSearchResult.swift */; };
 		588C58D12290F6D100D0F305 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C58D02290F6D100D0F305 /* NetworkService.swift */; };
@@ -33,12 +35,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		581E7CDD22ACFC8A00428746 /* AppDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailsController.swift; sourceTree = "<group>"; };
 		58406FF922A8068A007E5F8F /* HeaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderApp.swift; sourceTree = "<group>"; };
 		584417FE22987EDD009C218B /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		5859373C22A0A054006FF8D1 /* AppsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeader.swift; sourceTree = "<group>"; };
 		5859373E22A0A26D006FF8D1 /* AppsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderController.swift; sourceTree = "<group>"; };
 		5859374022A0A53F006FF8D1 /* AppsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderCell.swift; sourceTree = "<group>"; };
 		5859374422A17321006FF8D1 /* Appshorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appshorizontal.swift; sourceTree = "<group>"; };
+		587956F122B01B310022103A /* AppDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailCell.swift; sourceTree = "<group>"; };
 		588C58CA228FC2DF00D0F305 /* utilityFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilityFile.swift; sourceTree = "<group>"; };
 		588C58CE2290854000D0F305 /* appSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appSearchResult.swift; sourceTree = "<group>"; };
 		588C58D02290F6D100D0F305 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -82,6 +86,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		581E7CDC22ACFC4C00428746 /* AppDetails */ = {
+			isa = PBXGroup;
+			children = (
+				581E7CDD22ACFC8A00428746 /* AppDetailsController.swift */,
+			);
+			path = AppDetails;
+			sourceTree = "<group>";
+		};
 		584417FD22930D9B009C218B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +114,7 @@
 		58441805229B35F8009C218B /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				581E7CDC22ACFC4C00428746 /* AppDetails */,
 				58C4825A229DD12F00707529 /* AppPageController.swift */,
 				58C48260229E373300707529 /* HorizontalAppsController.swift */,
 				5859373E22A0A26D006FF8D1 /* AppsHeaderController.swift */,
@@ -124,6 +137,14 @@
 				58406FF922A8068A007E5F8F /* HeaderApp.swift */,
 			);
 			path = Apps;
+			sourceTree = "<group>";
+		};
+		587956F022B01B060022103A /* AppDetails */ = {
+			isa = PBXGroup;
+			children = (
+				587956F122B01B310022103A /* AppDetailCell.swift */,
+			);
+			path = AppDetails;
 			sourceTree = "<group>";
 		};
 		588C58CC2290599400D0F305 /* Models */ = {
@@ -154,6 +175,7 @@
 		58C4825D229DD77100707529 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				587956F022B01B060022103A /* AppDetails */,
 				58C4825E229DD79300707529 /* AppsPageCell.swift */,
 				58C4826A229ECF3E00707529 /* AppsGroupHorizontalCell.swift */,
 				5859373C22A0A054006FF8D1 /* AppsPageHeader.swift */,
@@ -359,12 +381,14 @@
 				58C4825B229DD12F00707529 /* AppPageController.swift in Sources */,
 				5859374122A0A53F006FF8D1 /* AppsHeaderCell.swift in Sources */,
 				58C48269229ECE7300707529 /* Extensions.swift in Sources */,
+				581E7CDE22ACFC8A00428746 /* AppDetailsController.swift in Sources */,
 				58E25263228E58EE00E1B43C /* appSearchViewController.swift in Sources */,
 				5859374522A17321006FF8D1 /* Appshorizontal.swift in Sources */,
 				58E25265228EFE9500E1B43C /* searchResultCell.swift in Sources */,
 				58C4826B229ECF3E00707529 /* AppsGroupHorizontalCell.swift in Sources */,
 				58406FFA22A8068A007E5F8F /* HeaderApp.swift in Sources */,
 				588C58CB228FC2DF00D0F305 /* utilityFile.swift in Sources */,
+				587956F222B01B310022103A /* AppDetailCell.swift in Sources */,
 				58E2524C228E264D00E1B43C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

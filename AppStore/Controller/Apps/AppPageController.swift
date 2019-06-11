@@ -28,51 +28,51 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.backgroundColor = UIColor(white: 0.99, alpha: 1)
         collectionView.register(AppsPageCell.self, forCellWithReuseIdentifier: appId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId )
-    view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
         activityIndicator.fillSuperview()
         fetchApps()
     }
     
-     fileprivate func fetchApps()
+    fileprivate func fetchApps()
     {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        NetworkService.shared.fetchSocialMediaApps { (Socialapp, err) in
+        ApiNetworkService.shared.fetchSocialMediaApps { (Socialapp, err) in
             dispatchGroup.leave()
             if let socialapps = Socialapp{
                 self.socialApp = socialapps
             }
         }
         dispatchGroup.enter()
-        NetworkService.shared.fetchTopFree { (apps, err) in
+        ApiNetworkService.shared.fetchTopFree { (apps, err) in
             dispatchGroup.leave()
             self.topFree = apps
         }
-       
+        
         dispatchGroup.enter()
-        NetworkService.shared.fetchNewApps { (apps, err) in
+        ApiNetworkService.shared.fetchNewApps { (apps, err) in
             dispatchGroup.leave()
             self.newApps = apps
         }
         dispatchGroup.enter()
-        NetworkService.shared.topFreeApps { (apps, Error) in
+        ApiNetworkService.shared.topFreeApps { (apps, Error) in
             dispatchGroup.leave()
-             self.topFreeApss = apps
+            self.topFreeApss = apps
         }
         dispatchGroup.enter()
-        NetworkService.shared.fetChNewGames { (apps, err) in
+        ApiNetworkService.shared.fetChNewGames { (apps, err) in
             dispatchGroup.leave()
             self.newGame = apps
         }
         dispatchGroup.enter()
-        NetworkService.shared.fetchtopPaidApp { (apps, err) in
-        dispatchGroup.leave()
-                self.topPaid = apps
-            }
-       
+        ApiNetworkService.shared.fetchtopPaidApp { (apps, err) in
+            dispatchGroup.leave()
+            self.topPaid = apps
+        }
+        
         dispatchGroup.enter()
-        NetworkService.shared.FetchTopGrossingApps { (apps, err) in
+        ApiNetworkService.shared.FetchTopGrossingApps { (apps, err) in
             dispatchGroup.leave()
             self.topGrossing  = apps
         }
@@ -103,13 +103,13 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
                 self.group.append(app)
             }
             self.collectionView.reloadData()
-
+            
         }
     }
     
-
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-     let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId , for: indexPath) as! AppsPageHeader
+        let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId , for: indexPath) as! AppsPageHeader
         headerCell.appHeaderController.socialApps = socialApp
         headerCell.appHeaderController.collectionView.reloadData()
         return headerCell
@@ -132,6 +132,12 @@ class AppPageController: BaseController, UICollectionViewDelegateFlowLayout {
         cell.titleLabel.text = AppGroup.feed.title
         cell.HorizontontallAppController.Group = AppGroup
         cell.HorizontontallAppController.collectionView.reloadData()
+        cell.HorizontontallAppController.didSelecthandler = {[weak self] selectItem in
+            let appDetailsVC = AppDetailsController()
+            appDetailsVC.navigationItem.title = selectItem.artistName
+            appDetailsVC.appId = selectItem.id
+            self?.navigationController?.pushViewController(appDetailsVC, animated: true)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
