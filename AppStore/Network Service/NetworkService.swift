@@ -55,7 +55,10 @@ class ApiNetworkService{
     
     func genericApiDataFetch<T:Decodable>(urlString: String, completion: @escaping (T?, Error?) ->())
     {
-        guard let url = URL(string: urlString)else{return}
+        guard let url = URL(string: urlString)else{
+        
+            return
+        }
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let error = err{
                 completion(nil, error)

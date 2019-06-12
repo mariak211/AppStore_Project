@@ -17,7 +17,6 @@ class AppsHeaderCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        //companyNameLabel.fillSuperview(padding: .init(top: 16, left: 0, bottom: 0, right: 0))
         let stackView = UIStackView(arrangedSubviews: [
             companyNameLabel, descriptionLabel,ImageView
             ])

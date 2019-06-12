@@ -24,7 +24,7 @@ class AppsGroupHorizontalCell: UICollectionViewCell {
        
         AppImageView.constrainWidth(constant: 60)
         AppImageView.constrainHeight(constant: 60)
-        AppImageView.backgroundColor = .purple
+        AppImageView.backgroundColor = .white
         getButton.backgroundColor = UIColor(white: 0.95, alpha: 1)
         getButton.constrainHeight(constant: 32)
         getButton.constrainWidth(constant: 64)

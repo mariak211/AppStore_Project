@@ -13,7 +13,7 @@ struct SearchResult: Decodable{
 }
 
 struct Result: Decodable{
-    let releaseNotes: String
+    let releaseNotes: String?
     let trackName: String
     let primaryGenreName: String
     let averageUserRating: Float?

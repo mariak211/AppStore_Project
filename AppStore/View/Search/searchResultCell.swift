@@ -43,9 +43,9 @@ class searchResultCell: UICollectionViewCell {
     let getButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GET", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.2371101677, green: 0.5854693055, blue: 0.9943186641, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
-        button.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 0.7409835189)
+        button.backgroundColor = #colorLiteral(red: 0.9414026141, green: 0.9409353137, blue: 0.9668747783, alpha: 1)
         button.widthAnchor.constraint(equalToConstant: 68).isActive = true
         button.heightAnchor.constraint(equalToConstant: 28).isActive = true
         button.layer.borderColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 0.1361033818)

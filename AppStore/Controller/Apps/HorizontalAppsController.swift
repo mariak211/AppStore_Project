@@ -35,8 +35,8 @@ class HorizontalCollectionViewController: BaseController, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupHorizontalCell
         let apps = Group?.feed.results[indexPath.item]
 
-        cell.nameLabl.text = apps?.artistName
-        cell.companyTitle.text = apps?.name
+        cell.nameLabl.text = apps?.name
+        cell.companyTitle.text = apps?.artistName
         let url = URL(string: apps?.artworkUrl100 ?? "")
         cell.AppImageView.sd_setImage(with: url, completed: nil)
         return cell
