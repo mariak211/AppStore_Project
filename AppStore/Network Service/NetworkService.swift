@@ -6,8 +6,8 @@
 //  Copyright © 2019 The Future I Dream. All rights reserved.
 //
 import Foundation
-class NetworkService{
-    static let shared = NetworkService()
+class ApiNetworkService{
+    static let shared = ApiNetworkService()
     func fetchApps(searchTerm: String, completion: @escaping (SearchResult?, Error?)->())
     {
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
@@ -55,7 +55,10 @@ class NetworkService{
     
     func genericApiDataFetch<T:Decodable>(urlString: String, completion: @escaping (T?, Error?) ->())
     {
-        guard let url = URL(string: urlString)else{return}
+        guard let url = URL(string: urlString)else{
+        
+            return
+        }
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let error = err{
                 completion(nil, error)

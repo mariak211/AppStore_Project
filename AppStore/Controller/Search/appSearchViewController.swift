@@ -24,11 +24,15 @@ class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayou
         fetchItuneApps()
         setUpSearchBarController()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetchItuneApps()
+    }
     
     fileprivate func fetchItuneApps()
     {
         //TODO- need to figure out to implement in this function
-        NetworkService.shared.fetchApps(searchTerm: "instagram") {(res, err) in
+        ApiNetworkService.shared.fetchApps(searchTerm: "twitter") {(res, err) in
             self.appSearchResult = res?.results ?? []
             DispatchQueue.main.async {
              self.collectionView.reloadData()
@@ -53,7 +57,7 @@ class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayou
     
             guard let searchText = searchController.searchBar.text else {return}
             
-            NetworkService.shared.fetchApps(searchTerm: searchText) { (res, err)  in
+            ApiNetworkService.shared.fetchApps(searchTerm: searchText) { (res, err)  in
                 
                 self.appSearchResult = res?.results ?? []
                 DispatchQueue.main.async {
@@ -78,7 +82,7 @@ class appSearchViewController: BaseController, UICollectionViewDelegateFlowLayou
         let appSearchReslt = appSearchResult[indexPath.item]
         cell.nameLabel.text = appSearchReslt.trackName
         cell.categoryLabel.text = appSearchReslt.primaryGenreName
-        cell.ratingLabel.text = "Rating: \(appSearchReslt.averageUserRating ?? 0) M"
+        cell.ratingLabel.text = "Rating: \(appSearchReslt.averageUserRating ?? 0)"
         let url = URL(string: appSearchReslt.artworkUrl100)
         cell.appIconImagView.sd_setImage(with: url)
         cell.screenshotImg1.sd_setImage(with: URL(string: appSearchReslt.screenshotUrls[0]))
